@@ -42,6 +42,10 @@ public class Account {
         this.balance = balance;
     }
     
+    @Override
+    public String toString(){
+        return bankName;
+    }
     private String bankName;
     private String routingNumber;
     private String accountNumber;
