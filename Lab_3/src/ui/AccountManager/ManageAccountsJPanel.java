@@ -146,9 +146,9 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSearch))
-                .addGap(18, 18, 18)
-                .addComponent(btnViewDetails)
                 .addGap(26, 26, 26)
+                .addComponent(btnViewDetails)
+                .addGap(18, 18, 18)
                 .addComponent(btnDelete)
                 .addContainerGap(132, Short.MAX_VALUE))
         );
