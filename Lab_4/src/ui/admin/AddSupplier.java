@@ -44,6 +44,7 @@ public class AddSupplier extends javax.swing.JPanel {
         fileChooser.addChoosableFileFilter(jpegFilter);
         fileChooser.addChoosableFileFilter(pngFilter);
         fileChooser.setFileFilter(pngFilter); // Set PNG as the default file filter
+        createDemoData();
     }
 
 
@@ -269,4 +270,25 @@ public class AddSupplier extends javax.swing.JPanel {
     CardLayout layout = (CardLayout) workArea.getLayout();
     layout.previous(workArea);
     }
+        
+    public void createDemoData() {
+    // Create first demo supplier
+    Supplier supplier1 = supplierDirectory.addSupplier();
+    supplier1.setSupplyName("Best Electronics");
+    supplier1.setLogoImage(new ImageIcon("path/to/logo1.jpg")); // Assuming you have demo logo paths
+
+    // Create second demo supplier
+    Supplier supplier2 = supplierDirectory.addSupplier();
+    supplier2.setSupplyName("Tech Gadgets");
+    supplier2.setLogoImage(new ImageIcon("path/to/logo2.png"));
+
+    // Create third demo supplier
+    Supplier supplier3 = supplierDirectory.addSupplier();
+    supplier3.setSupplyName("Home Appliances");
+    supplier3.setLogoImage(new ImageIcon("path/to/logo3.png"));
+
+   
+    
+}
+
 }

@@ -5,6 +5,7 @@
 package ui;
 
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Supplier;
@@ -35,6 +36,7 @@ public class LoginScreen extends javax.swing.JPanel {
 
         populateRoleCombo();
     populateSupplierCombo();
+     
     }
 
     /**
@@ -209,4 +211,8 @@ private void updateSupplierVisibility() {
         cmbSuppliers.setVisible(true);  // Show the supplier combo box
     }
 }
+
+
+
+
 }
