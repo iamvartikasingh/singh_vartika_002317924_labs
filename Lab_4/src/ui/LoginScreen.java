@@ -146,7 +146,6 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void cmbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolesActionPerformed
         // TODO add your handling code here:
-        
         updateSupplierVisibility();
     }//GEN-LAST:event_cmbRolesActionPerformed
 
@@ -154,8 +153,6 @@ public class LoginScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
         // Check if the selected item is null
     if (cmbSuppliers.getSelectedItem() == null) return;
-
-    // Cast the selected item to Supplier and assign it to the selectedSupplier variable
     selectedSupplier = (Supplier) cmbSuppliers.getSelectedItem();
     }//GEN-LAST:event_cmbSuppliersActionPerformed
    
