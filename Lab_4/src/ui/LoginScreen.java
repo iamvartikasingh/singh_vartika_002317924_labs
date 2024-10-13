@@ -34,7 +34,7 @@ public class LoginScreen extends javax.swing.JPanel {
         this.supplierDirectory = supplierDirectory;
 
         populateRoleCombo();
-//        populateSupplierCombo();
+    populateSupplierCombo();
     }
 
     /**
@@ -150,7 +150,11 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void cmbSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSuppliersActionPerformed
         // TODO add your handling code here:
-        updateSupplierVisibility();
+        // Check if the selected item is null
+    if (cmbSuppliers.getSelectedItem() == null) return;
+
+    // Cast the selected item to Supplier and assign it to the selectedSupplier variable
+    selectedSupplier = (Supplier) cmbSuppliers.getSelectedItem();
     }//GEN-LAST:event_cmbSuppliersActionPerformed
    
 
@@ -188,16 +192,21 @@ public void populateSupplierCombo() {
 
 // Method to update the visibility of suppliers
 private void updateSupplierVisibility() {
-  String selectedRole = (String) cmbRoles.getSelectedItem();
+    // If no role is selected or if the selected role is AdminWorkAreaJPanel
+    if ((cmbRoles.getSelectedItem() == null) || 
+        (cmbRoles.getSelectedItem().getClass() == AdminWorkAreaJPanel.class)) {
+        // Hide supplier-related components and reset selectedSupplier
+        selectedSupplier = null;
+        lblSupplier.setVisible(false);  // Hide the supplier label
+        cmbSuppliers.setVisible(false); // Hide the supplier combo box
+        return; // Exit the method
+    }
 
-    // Check if the selected role is Admin or Supplier
-    if (selectedRole == null || selectedRole.equals("Admin Role")) {
-        selectedSupplier = null; // Clear selected supplier
-        lblSupplier.setVisible(false); // Hide supplier label
-        cmbSuppliers.setVisible(false); // Hide supplier combo box
-    } else if (selectedRole.equals("Supplier Role")) {
-        lblSupplier.setVisible(true); // Show supplier label
-        cmbSuppliers.setVisible(true); // Show supplier combo box
+    // If the selected role is SupplierWorkAreaJPanel
+    if (cmbRoles.getSelectedItem().getClass() == SupplierWorkAreaJPanel.class) {
+        // Show supplier-related components
+        lblSupplier.setVisible(true);   // Show the supplier label
+        cmbSuppliers.setVisible(true);  // Show the supplier combo box
     }
 }
 }

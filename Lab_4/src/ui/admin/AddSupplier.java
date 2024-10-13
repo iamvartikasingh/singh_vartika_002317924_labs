@@ -3,19 +3,47 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.admin;
-
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.SupplierDirectory;
 /**
  *
  * @author vartika
  */
 public class AddSupplier extends javax.swing.JPanel {
+    private JPanel workArea;
+    private SupplierDirectory supplierDirectory;
+     private final JFileChooser fileChooser = new JFileChooser(); // Initialize file chooser
+     ImageIcon logoImage; // Store the logo image
 
     /**
      * Creates new form AddSupplier
      */
-    public AddSupplier() {
-        initComponents();
+    public AddSupplier(JPanel workArea, SupplierDirectory supplierDirectory) {
+        initComponents(); // Initialize components
+        this.workArea = workArea;
+        this.supplierDirectory = supplierDirectory;
+
+        // Set up file filters for image selection
+        FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file", "jpg", "jpeg");
+        FileFilter pngFilter = new FileNameExtensionFilter("PNG file", "png");
+
+        // Add file filters to the file chooser
+        fileChooser.addChoosableFileFilter(jpegFilter);
+        fileChooser.addChoosableFileFilter(pngFilter);
+        fileChooser.setFileFilter(pngFilter); // Set PNG as the default file filter
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +54,150 @@ public class AddSupplier extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
+        lblTitle2 = new javax.swing.JLabel();
+        lblTitle3 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        imgLogo = new javax.swing.JLabel();
+        btnAttach = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+
+        lblTitle.setText("New Supplier Information");
+
+        lblTitle1.setText("Name");
+
+        lblTitle2.setText("Description");
+
+        lblTitle3.setText("Logo");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        imgLogo.setText("<img>");
+        imgLogo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        btnAttach.setText("Attach");
+        btnAttach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAttachActionPerformed(evt);
+            }
+        });
+
+        btnRemove.setText("Remove");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(356, 356, 356)
+                        .addComponent(lblTitle))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTitle2)
+                            .addComponent(lblTitle3)
+                            .addComponent(lblTitle1))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAttach)
+                                    .addComponent(btnRemove)))
+                            .addComponent(jScrollPane1)
+                            .addComponent(txtName))))
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(lblTitle)
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle1)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitle3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAttach))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(btnRemove)))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        // TODO add your handling code here:
+         logoImage = null; // Clear the logo image
+        imgLogo.setIcon(logoImage); // Remove the image from the label in the UI
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
+    private void btnAttachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAttachActionPerformed
+        // TODO add your handling code here:
+         int returnVal = fileChooser.showOpenDialog(this); // Show file chooser dialog
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile(); // Get the selected file
+            URL url;
+
+            try {
+                // Convert file to URL
+                url = file.toURI().toURL();
+                logoImage = new ImageIcon(url); // Create ImageIcon from URL
+                logoImage = new ImageIcon(logoImage.getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH)); // Scale the image
+
+                // Set the logo image to the label in the UI
+                imgLogo.setIcon(logoImage);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex); // Log any exceptions
+            
+    }//GEN-LAST:event_btnAttachActionPerformed
+        }}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+       
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAttach;
+    private javax.swing.JButton btnRemove;
+    private javax.swing.JLabel imgLogo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitle2;
+    private javax.swing.JLabel lblTitle3;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }
