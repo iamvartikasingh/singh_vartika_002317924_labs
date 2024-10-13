@@ -15,6 +15,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.Supplier;
 import model.SupplierDirectory;
 /**
  *
@@ -64,6 +66,8 @@ public class AddSupplier extends javax.swing.JPanel {
         imgLogo = new javax.swing.JLabel();
         btnAttach = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnAddSupplier = new javax.swing.JButton();
 
         lblTitle.setText("New Supplier Information");
 
@@ -94,6 +98,20 @@ public class AddSupplier extends javax.swing.JPanel {
             }
         });
 
+        btnBack.setText("<<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnAddSupplier.setText("Add");
+        btnAddSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSupplierActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +119,9 @@ public class AddSupplier extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(356, 356, 356)
+                        .addGap(85, 85, 85)
+                        .addComponent(btnBack)
+                        .addGap(193, 193, 193)
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
@@ -110,23 +130,27 @@ public class AddSupplier extends javax.swing.JPanel {
                             .addComponent(lblTitle3)
                             .addComponent(lblTitle1))
                         .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAttach)
-                                    .addComponent(btnRemove)))
-                            .addComponent(jScrollPane1)
-                            .addComponent(txtName))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAddSupplier)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnAttach)
+                                        .addComponent(btnRemove)))
+                                .addComponent(jScrollPane1)
+                                .addComponent(txtName)))))
                 .addContainerGap(378, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(lblTitle)
-                .addGap(72, 72, 72)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle)
+                    .addComponent(btnBack))
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTitle1)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -139,13 +163,16 @@ public class AddSupplier extends javax.swing.JPanel {
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTitle3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnAttach))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(imgLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAttach))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAddSupplier))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(btnRemove)))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,10 +200,31 @@ public class AddSupplier extends javax.swing.JPanel {
                 imgLogo.setIcon(logoImage);
             } catch (MalformedURLException ex) {
                 Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex); // Log any exceptions
-            
+           }}
+     
     }//GEN-LAST:event_btnAttachActionPerformed
-        }}
-    
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    backAction();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
+        // TODO add your handling code here:
+        
+         // Add a new supplier to the supplier directory
+    Supplier supplier = supplierDirectory.addSupplier();
+
+    // Set the supplier's name and logo
+    supplier.setSupplyName(txtName.getText());
+    supplier.setLogoImage(logoImage);
+
+    // Show a confirmation dialog that the supplier was added successfully
+    JOptionPane.showMessageDialog(this, "Supplier successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
+
+    // Call the backAction() method to navigate back to the previous panel
+    backAction();
+    }//GEN-LAST:event_btnAddSupplierActionPerformed
+
     
     
     
@@ -189,7 +237,9 @@ public class AddSupplier extends javax.swing.JPanel {
     
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddSupplier;
     private javax.swing.JButton btnAttach;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRemove;
     private javax.swing.JLabel imgLogo;
     private javax.swing.JScrollPane jScrollPane1;
@@ -200,4 +250,23 @@ public class AddSupplier extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle3;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    private void backAction() {
+             // TODO add your handling code here:
+        workArea.remove(this);
+
+    // Get all components in the workArea
+    Component[] componentArray = workArea.getComponents();
+
+    // Get the last component added (the previous one before the current panel)
+    Component component = componentArray[componentArray.length - 1];
+
+    // Cast it to ManageSuppliers JPanel and refresh the table (assuming there's a method for that)
+    ManageSuppliers manageSuppliersJPanel = (ManageSuppliers) component;
+    manageSuppliersJPanel.refreshTable();
+
+    // Switch back to the previous panel using CardLayout
+    CardLayout layout = (CardLayout) workArea.getLayout();
+    layout.previous(workArea);
+    }
 }

@@ -41,6 +41,10 @@ public class Supplier {
     public void setSupplyName(String supplyName) {
         this.supplyName = supplyName;
     }
+     public ProductCatalog getProductCatalog() {
+        return productCatalog;
+    }
+    
 
     // Override toString to display supplyName in JComboBox
     @Override

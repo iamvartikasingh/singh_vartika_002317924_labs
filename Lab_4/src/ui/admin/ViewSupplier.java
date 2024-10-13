@@ -4,19 +4,56 @@
  */
 package ui.admin;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Product;
+import model.Supplier;
+
 /**
  *
  * @author vartika
  */
 public class ViewSupplier extends javax.swing.JPanel {
 
+
+
+    JPanel workArea;
+    Supplier supplier;
+
     /**
      * Creates new form ViewSupplier
      */
-    public ViewSupplier() {
-        initComponents();
+    public ViewSupplier(JPanel workArea, Supplier supplier) {
+        initComponents(); // Initialize UI components
+        this.workArea = workArea;
+        this.supplier = supplier;
+
+        // Set the label text to the supplier's name
+        lblSupplierName.setText(supplier.getSupplyName());
+
+        // Refresh the product table to show the supplier's products
+        refreshTable();
     }
 
+    /**
+     * Method to refresh the product table with the supplier's products.
+     */
+   
+        private void refreshTable() {
+        
+        DefaultTableModel model = (DefaultTableModel)productCatalog1.getModel();
+        model.setRowCount(0);
+        
+        for(Product p : supplier.getProductCatalog().getProductCatalog()) {
+            Object row[] = new Object[3];
+            row[0] = p;
+            row[1] = p.getId();
+            row[2] = p.getPrice();
+            model.addRow(row);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,19 +63,81 @@ public class ViewSupplier extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblSupplierName = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        productCatalog1 = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
+
+        lblSupplierName.setText("<Supplier Name>");
+
+        productCatalog1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Product Name", "Model", "Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(productCatalog1);
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(83, 83, 83)
+                        .addComponent(lblSupplierName))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 808, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(824, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(lblSupplierName))
+                .addGap(68, 68, 68)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+        workArea.remove(this);
+        CardLayout layout = (CardLayout)workArea.getLayout();
+        layout.previous(workArea);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblSupplierName;
+    private javax.swing.JTable productCatalog1;
     // End of variables declaration//GEN-END:variables
 }
