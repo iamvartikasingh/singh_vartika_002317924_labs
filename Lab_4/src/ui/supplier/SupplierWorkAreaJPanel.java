@@ -16,25 +16,22 @@ import ui.LoginScreen;
  * @author vartika
  */
 public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
-   
+    JPanel  mainWorkArea;
     Supplier supplier;
-
+//    MasterOrderCatalog masterOrderCatalog;
 
     /**
-     * Creates new form SupplierWorkAreaJPanel
+     * Creates new form ProductManagerWorkAreaJPanel
      */
-     public SupplierWorkAreaJPanel(JPanel mainWorkArea, Supplier supplier)  {
-        initComponents();
-      
-        this.mainWorkArea = mainWorkArea;
-        this.supplier = supplier;
+    public SupplierWorkAreaJPanel(JPanel mainWorkArea, Supplier supplier) {
 
-        // Set welcome label if supplier is not null
-        if (supplier != null) {
-            lblWelcome.setText("Welcome to Lab 4, " + supplier.getSupplyName());
-        }
-//
-//        masterOrderCatalog = moc; 
+        initComponents();
+        this.mainWorkArea = mainWorkArea;
+        
+        this.supplier = supplier;
+        if (supplier != null) lblWelcome.setText("Welcome to Lab 4, "+supplier.getSupplyName());
+        
+//      masterOrderCatalog = moc;
     }
 
     /**
@@ -48,23 +45,22 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         menuBar = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnManageProductCatalog = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         lblWelcome = new javax.swing.JLabel();
+        btnSupplierProfile = new javax.swing.JButton();
+        btnManageStaff = new javax.swing.JButton();
+        Performance = new javax.swing.JButton();
         mainWorkArea = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jButton1.setText("Performance");
-
-        jButton2.setText("Manage Staff ");
-
-        jButton3.setText("Product Catalog");
-
-        jButton4.setText("Update Profile ");
+        btnManageProductCatalog.setText("Product Catalog");
+        btnManageProductCatalog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageProductCatalogActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setText("Log Out");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +71,30 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         lblWelcome.setText("<Welcome Message>");
 
+        btnSupplierProfile.setText("Update Profile");
+        btnSupplierProfile.setEnabled(false);
+        btnSupplierProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSupplierProfileActionPerformed(evt);
+            }
+        });
+
+        btnManageStaff.setText("Manage Staff");
+        btnManageStaff.setEnabled(false);
+        btnManageStaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageStaffActionPerformed(evt);
+            }
+        });
+
+        Performance.setText("Performance");
+        Performance.setEnabled(false);
+        Performance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PerformanceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
         menuBarLayout.setHorizontalGroup(
@@ -82,30 +102,30 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBarLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(40, 40, 40)
-                .addComponent(jButton4)
-                .addGap(51, 51, 51)
-                .addComponent(jButton2)
-                .addGap(36, 36, 36)
-                .addComponent(jButton1)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(btnManageProductCatalog)
+                .addGap(46, 46, 46)
+                .addComponent(btnSupplierProfile)
+                .addGap(49, 49, 49)
+                .addComponent(btnManageStaff)
+                .addGap(48, 48, 48)
+                .addComponent(Performance)
+                .addGap(31, 31, 31)
                 .addComponent(btnLogOut)
                 .addGap(45, 45, 45))
         );
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuBarLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(52, 52, 52)
                 .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageProductCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWelcome))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(lblWelcome)
+                    .addComponent(btnSupplierProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Performance, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jSplitPane1.setTopComponent(menuBar);
@@ -128,7 +148,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
         
-     mainWorkArea.remove(this);
+    mainWorkArea.remove(this);
 
     Component[] componentArray = mainWorkArea.getComponents();
     Component component = componentArray[componentArray.length - 1];
@@ -138,16 +158,43 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     CardLayout layout = (CardLayout) mainWorkArea.getLayout();
     layout.previous(mainWorkArea);
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnSupplierProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierProfileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSupplierProfileActionPerformed
+
+    private void PerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PerformanceActionPerformed
+        // TODO add your handling code here:
+        //        ProductReportJPanel prjp = new workArea(userProcessContainer, supplier);
+        //        workArea.add("ProductReportJPanelSupplier", prjp);
+        //        CardLayout layout = (CardLayout)workArea.getLayout();
+        //        layout.next(userProcessContainer);
+    }//GEN-LAST:event_PerformanceActionPerformed
+
+    private void btnManageStaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageStaffActionPerformed
+        // TODO add your handling code here:
+          
+    
+    }//GEN-LAST:event_btnManageStaffActionPerformed
+
+    private void btnManageProductCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProductCatalogActionPerformed
+        // TODO add your handling code here:
+        
+        ManageProductCatalogJPanel mpcjp = new ManageProductCatalogJPanel(workArea, supplier);
+        workArea.add("ManageProductCatalogJPanel", mpcjp);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea);
+    }//GEN-LAST:event_btnManageProductCatalogActionPerformed
 @Override
 public String toString() {
     return "Supplier";
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Performance;
     private javax.swing.JButton btnLogOut;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnManageProductCatalog;
+    private javax.swing.JButton btnManageStaff;
+    private javax.swing.JButton btnSupplierProfile;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblWelcome;
     private javax.swing.JPanel mainWorkArea;
