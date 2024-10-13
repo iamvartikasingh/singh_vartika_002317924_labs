@@ -28,7 +28,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         this.mainWorkArea = mainWorkArea;
         this.supplierDirectory = supplierDirectory;
 
-        lblWelcome.setText("Welcome to Lab 4!");
+        lblWelcome1.setText("Welcome to Lab 4!");
     }
     public AdminWorkAreaJPanel() {
         initComponents();
@@ -47,7 +47,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         menuBar = new javax.swing.JPanel();
         btnManageSuppliers = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
-        lblWelcome = new javax.swing.JLabel();
+        lblWelcome1 = new javax.swing.JLabel();
         workArea = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
@@ -69,16 +69,16 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblWelcome.setText("Text");
+        lblWelcome1.setText("<WelcomeMsg>");
 
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
         menuBarLayout.setHorizontalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBarLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 591, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(lblWelcome1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
                 .addComponent(btnManageSuppliers)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogOut)
@@ -91,23 +91,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnManageSuppliers)
                     .addComponent(btnLogOut)
-                    .addComponent(lblWelcome))
+                    .addComponent(lblWelcome1))
                 .addGap(29, 29, 29))
         );
 
         splitPane.setTopComponent(menuBar);
 
-        javax.swing.GroupLayout workAreaLayout = new javax.swing.GroupLayout(workArea);
-        workArea.setLayout(workAreaLayout);
-        workAreaLayout.setHorizontalGroup(
-            workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 941, Short.MAX_VALUE)
-        );
-        workAreaLayout.setVerticalGroup(
-            workAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
-        );
-
+        workArea.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(workArea);
 
         add(splitPane, java.awt.BorderLayout.CENTER);
@@ -128,7 +118,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSuppliersActionPerformed
         // TODO add your handling code here:
-          ManageSuppliers panel = new ManageSuppliers(workArea, supplierDirectory);
+    ManageSuppliers panel = new ManageSuppliers(workArea, supplierDirectory);
     workArea.add("ManageSupplierAdministrative", panel);
     CardLayout layout = (CardLayout) workArea.getLayout();
     layout.next(workArea);
@@ -138,7 +128,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnManageSuppliers;
-    private javax.swing.JLabel lblWelcome;
+    private javax.swing.JLabel lblWelcome1;
     private javax.swing.JPanel menuBar;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel workArea;

@@ -4,19 +4,26 @@
  */
 package ui.supplier;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import model.Supplier;
+
 /**
  *
  * @author vartika
  */
 public class SearchForProductJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SearchForProductJPanel
-     */
-    public SearchForProductJPanel() {
+   JPanel workArea;
+   Supplier supplier;
+    
+    /** Creates new form CreateProductJPanel */
+    public SearchForProductJPanel(JPanel workArea, Supplier supplier) {
+      
         initComponents();
+        this.workArea = workArea;
+        this.supplier = supplier;
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

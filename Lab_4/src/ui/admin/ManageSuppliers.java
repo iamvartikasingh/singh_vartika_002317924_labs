@@ -4,22 +4,44 @@
  */
 package ui.admin;
 
-import javax.swing.JPanel;
+import model.Supplier;
 import model.SupplierDirectory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
+
 
 /**
  *
- * @author vartika
+ * @author Vartika
  */
 public class ManageSuppliers extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ManageSuppliers
-     */
-    public ManageSuppliers(JPanel workArea, SupplierDirectory supplierDirectory) {
+    private JPanel userProcessContainer;
+    private SupplierDirectory supplierDirectory;
+    
+    /** Creates new form ManageSuppliers */
+    public ManageSuppliers(JPanel upc, SupplierDirectory sd) {
         initComponents();
+        userProcessContainer = upc;
+        supplierDirectory = sd;
+        refreshTable();
     }
-
+    
+    public void refreshTable() {
+        
+        DefaultTableModel model = (DefaultTableModel)tblSuppliers.getModel();
+        model.setRowCount(0);
+        
+        for(Supplier s : supplierDirectory.getSupplierList()) {
+            Object row[] = new Object[1];
+            row[0] = s;
+           // row[1] = s.getProductCatalog().getProductCount() == 0 ? "None" : s.getProductCatalog().getProductCount();
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,8 +55,8 @@ public class ManageSuppliers extends javax.swing.JPanel {
         btnRemove = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        productCatalog = new javax.swing.JTable();
+        scrollpane = new javax.swing.JScrollPane();
+        tblSuppliers = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
 
         btnView.setText("View Supplier");
@@ -50,7 +72,7 @@ public class ManageSuppliers extends javax.swing.JPanel {
 
         jLabel2.setText("jLabel2");
 
-        productCatalog.setModel(new javax.swing.table.DefaultTableModel(
+        tblSuppliers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -69,7 +91,7 @@ public class ManageSuppliers extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(productCatalog);
+        scrollpane.setViewportView(tblSuppliers);
 
         btnAdd.setText("Add Supplier");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +115,7 @@ public class ManageSuppliers extends javax.swing.JPanel {
                         .addComponent(btnRemove))
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)))
                 .addContainerGap(130, Short.MAX_VALUE))
@@ -106,7 +128,7 @@ public class ManageSuppliers extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(133, 133, 133)
                         .addComponent(jLabel2)))
@@ -127,18 +149,14 @@ public class ManageSuppliers extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed
 
-    void refreshTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable productCatalog;
+    private javax.swing.JScrollPane scrollpane;
+    private javax.swing.JTable tblSuppliers;
     // End of variables declaration//GEN-END:variables
 }

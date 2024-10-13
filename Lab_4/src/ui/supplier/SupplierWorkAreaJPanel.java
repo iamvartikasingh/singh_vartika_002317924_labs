@@ -4,11 +4,10 @@
  */
 package ui.supplier;
 
+import model.Supplier;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
-import model.Supplier;
-import model.SupplierDirectory;
 import ui.LoginScreen;
 
 /**
@@ -16,7 +15,8 @@ import ui.LoginScreen;
  * @author vartika
  */
 public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
-    JPanel  mainWorkArea;
+
+    JPanel mainWorkArea;
     Supplier supplier;
 //    MasterOrderCatalog masterOrderCatalog;
 
@@ -33,6 +33,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         
 //      masterOrderCatalog = moc;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,7 +52,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         btnSupplierProfile = new javax.swing.JButton();
         btnManageStaff = new javax.swing.JButton();
         Performance = new javax.swing.JButton();
-        mainWorkArea = new javax.swing.JPanel();
+        workArea = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -130,8 +131,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane1.setTopComponent(menuBar);
 
-        mainWorkArea.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(mainWorkArea);
+        workArea.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(workArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -179,7 +180,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageProductCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProductCatalogActionPerformed
         // TODO add your handling code here:
-        
         ManageProductCatalogJPanel mpcjp = new ManageProductCatalogJPanel(workArea, supplier);
         workArea.add("ManageProductCatalogJPanel", mpcjp);
         CardLayout layout = (CardLayout) workArea.getLayout();
@@ -197,7 +197,7 @@ public String toString() {
     private javax.swing.JButton btnSupplierProfile;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblWelcome;
-    private javax.swing.JPanel mainWorkArea;
     private javax.swing.JPanel menuBar;
+    private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
 }

@@ -65,5 +65,18 @@ public class Product {
         this.name = name;
     }
     // Additional getters and setters can be added as needed
+  
+  
+     // Method to add a new feature to the product
+    public Feature addNewFeature() {
+        // Create a new Feature object for this product
+        Feature newFeature = new Feature(this);
+
+        // Add the new feature to the product's list of features
+        features.add(newFeature);
+
+        // Return the newly added feature
+        return newFeature;
+    }
 }
 

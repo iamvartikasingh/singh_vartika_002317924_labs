@@ -6,7 +6,10 @@ package ui.supplier;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Feature;
 import model.Product;
 
 /**
@@ -186,14 +189,49 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnAddFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFeatureActionPerformed
         // TODO add your handling code here:
+     Feature newFeature = product.addNewFeature();
+  
+    // Set default name and value for the new feature
+    newFeature.setName("New Feature");
+    newFeature.setValue("Type Value here");
 
+    // Save the updated features to the product
+    saveFeatures();
+
+    // Refresh the table to display the newly added feature
+    refreshTable();
     }//GEN-LAST:event_btnAddFeatureActionPerformed
 
     private void btnRemoveFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFeatureActionPerformed
         // TODO add your handling code here:
+         saveFeatures();
+
+    // Get the selected row from the table
+    int selectedRow = tblFeatures.getSelectedRow();
+
+    // If a row is selected, remove the feature from the product
+    if (selectedRow >= 0) {
+        product.getFeatures().remove(selectedRow);
+    }
+
+    // Refresh the table to reflect the removal of the feature
+    refreshTable();
 
     }//GEN-LAST:event_btnRemoveFeatureActionPerformed
+private void saveFeatures() {
+    // Get the table model
+    DefaultTableModel model = (DefaultTableModel) tblFeatures.getModel();
 
+    // Loop through the rows in the table and update the features
+    for (int i = 0; i < model.getRowCount(); i++) {
+        // Get the current feature from the product
+        Feature currentFeature = product.getFeatures().get(i);
+
+        // Set the feature's name and value from the table's data
+        currentFeature.setName(tblFeatures.getValueAt(i, 0).toString());
+        currentFeature.setValue(tblFeatures.getValueAt(i, 1));
+    }
+}
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         txtName.setEditable(true);
@@ -211,6 +249,27 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+         product.setPrice(Integer.parseInt(txtPrice.getText()));
+
+    // Set the product name from the text field
+    product.setName(txtName.getText());
+
+    // Save the features from the table to the product's feature list
+    saveFeatures();
+
+    // Disable the text fields and buttons after saving
+    txtName.setEditable(false);
+    txtPrice.setEditable(false);
+    btnSave.setEnabled(false);
+    tblFeatures.setEnabled(false);
+    btnAddFeature.setEnabled(false);
+    btnRemoveFeature.setEnabled(false);
+
+    // Show a message indicating the product information has been saved
+    JOptionPane.showMessageDialog(this, "Product information saved.", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+    // Refresh the table to ensure it shows the updated feature data
+    refreshTable();
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -243,6 +302,15 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void refreshTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    DefaultTableModel model = (DefaultTableModel) tblFeatures.getModel();
+    model.setRowCount(0); // Clear the existing rows
+
+    // Loop through each feature in the product and add it to the table
+    for (Feature feature : product.getFeatures()) {
+        Object[] row = new Object[2];
+        row[0] = feature.getName();  // Feature name
+        row[1] = feature.getValue(); // Feature value
+        model.addRow(row);
     }
+}
 }
