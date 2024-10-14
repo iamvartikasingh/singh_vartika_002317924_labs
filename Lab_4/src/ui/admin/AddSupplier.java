@@ -233,7 +233,7 @@ public class AddSupplier extends javax.swing.JPanel {
     
     
     
-    
+   
     
     
     

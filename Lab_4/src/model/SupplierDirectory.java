@@ -40,7 +40,15 @@ public class SupplierDirectory {
     public void removeSupplier(Supplier s) {
         supplierList.remove(s);
     }
-
+   
+    public Supplier updateSupplier(String name){
+        for(Supplier s : supplierList){
+            if(name.equals(s.getSupplyName())){
+                return s;
+            }
+        }
+        return null;
+    }
     // Method to search for a supplier by name
     public Supplier searchSupplier(String keyWord) {
         for (Supplier s : supplierList) {

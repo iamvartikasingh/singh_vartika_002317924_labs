@@ -53,9 +53,9 @@
                       <Component id="lblWelcome" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Component id="btnManageProductCatalog" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="btnSupplierProfile" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnManageStaff" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="Performance" min="-2" max="-2" attributes="0"/>
@@ -73,9 +73,9 @@
                           <Component id="btnManageProductCatalog" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="btnLogOut" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="lblWelcome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSupplierProfile" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="btnManageStaff" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                           <Component id="Performance" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                          <Component id="btnSupplierProfile" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
@@ -107,15 +107,6 @@
                 <Property name="text" type="java.lang.String" value="&lt;Welcome Message&gt;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnSupplierProfile">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Update Profile"/>
-                <Property name="enabled" type="boolean" value="false"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupplierProfileActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="btnManageStaff">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Staff"/>
@@ -132,6 +123,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PerformanceActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnSupplierProfile">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update Profile"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSupplierProfileActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

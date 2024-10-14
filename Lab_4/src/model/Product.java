@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -48,7 +49,18 @@ public class Product {
     private String name;
     private int price;
     private int id;
+    private ImageIcon pImage;
+
+    public ImageIcon getpImage() {
+        return pImage;
+    }
+
+    public void setpImage(ImageIcon pImage) {
+        this.pImage = pImage;
+    }
     private ArrayList<Feature> features;
+
+
 
     private static int count = 0;
 
@@ -77,6 +89,11 @@ public class Product {
 
         // Return the newly added feature
         return newFeature;
+    }
+    
+     @Override
+    public String toString() {
+        return name;
     }
 }
 
