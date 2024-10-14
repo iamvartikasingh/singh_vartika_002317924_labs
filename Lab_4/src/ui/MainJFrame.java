@@ -5,6 +5,7 @@
 package ui;
 import ui.LoginScreen;
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
 import model.Supplier;
 import model.SupplierDirectory;
 
@@ -23,6 +24,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         supplierDirectory = new SupplierDirectory();
         setSize(1200,900);
+         populateDemoData();
         setResizeable(false);    
         setLoginScreen();
       populateDemoData();
@@ -41,6 +43,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        mainWorkArea.setBackground(new java.awt.Color(204, 255, 255));
         mainWorkArea.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,6 +115,21 @@ public class MainJFrame extends javax.swing.JFrame {
     
         Supplier bestBuy = supplierDirectory.addSupplier();
         bestBuy.setSupplyName("Best Buy");
+        
+    Supplier supplier1 = supplierDirectory.addSupplier();
+    supplier1.setSupplyName("Best Electronics");
+    supplier1.setLogoImage(new ImageIcon("path/to/logo1.jpg")); // Assuming you have demo logo paths
+
+    // Create second demo supplier
+    Supplier supplier2 = supplierDirectory.addSupplier();
+    supplier2.setSupplyName("Tech Gadgets");
+    supplier2.setLogoImage(new ImageIcon("path/to/logo2.png"));
+
+    // Create third demo supplier
+    Supplier supplier3 = supplierDirectory.addSupplier();
+    supplier3.setSupplyName("Home Appliances");
+    supplier3.setLogoImage(new ImageIcon("path/to/logo3.png"));
+
     
     }
 

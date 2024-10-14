@@ -56,6 +56,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        menuBar.setBackground(new java.awt.Color(255, 255, 255));
+
         btnManageProductCatalog.setText("Product Catalog");
         btnManageProductCatalog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +72,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        lblWelcome.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblWelcome.setText("<Welcome Message>");
 
         btnSupplierProfile.setText("Update Profile");
@@ -103,11 +106,11 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuBarLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnManageProductCatalog)
-                .addGap(46, 46, 46)
+                .addGap(39, 39, 39)
                 .addComponent(btnSupplierProfile)
-                .addGap(49, 49, 49)
+                .addGap(28, 28, 28)
                 .addComponent(btnManageStaff)
                 .addGap(48, 48, 48)
                 .addComponent(Performance)
@@ -120,17 +123,18 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(menuBarLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnManageProductCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageProductCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblWelcome)
-                    .addComponent(btnSupplierProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Performance, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(btnSupplierProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Performance, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jSplitPane1.setTopComponent(menuBar);
 
+        workArea.setBackground(new java.awt.Color(237, 249, 255));
         workArea.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(workArea);
 

@@ -5,7 +5,10 @@
 package ui.supplier;
 
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import model.Product;
 import model.Supplier;
 
 /**
@@ -16,6 +19,7 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
 
    JPanel workArea;
    Supplier supplier;
+ 
     
     /** Creates new form CreateProductJPanel */
     public SearchForProductJPanel(JPanel workArea, Supplier supplier) {
@@ -39,9 +43,19 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
         searchButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(237, 250, 253));
+
+        lblTitle.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lblTitle.setText("Search for Product");
 
+        lblProductId.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         lblProductId.setText("Product Id:");
+
+        idField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idFieldActionPerformed(evt);
+            }
+        });
 
         searchButton.setText("Search Now >>");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,39 +76,76 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblProductId)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
                         .addGap(37, 37, 37)
-                        .addComponent(lblTitle))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(searchButton)))
-                .addContainerGap(408, Short.MAX_VALUE))
+                        .addGap(179, 179, 179)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblProductId)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(searchButton)))))
+                .addContainerGap(358, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitle))
-                .addGap(61, 61, 61)
+                .addGap(157, 157, 157)
                 .addComponent(lblProductId)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(idField))
+                .addContainerGap(409, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
+       if (!idField.getText().isBlank()) {
 
+        try {
+            // Get the product ID from the input field and convert it to an integer
+            int searchValue = Integer.parseInt(idField.getText().trim());
+
+            // Search for the product in the supplier's product catalog
+            Product foundProduct = supplier.getProductCatalog().searchProduct(searchValue);
+
+            // If the product is found, navigate to ViewProductDetailJPanel
+            if (foundProduct != null) {
+                
+                // Create a new panel to view the product's details
+                ViewProductDetailJPanel panel = new ViewProductDetailJPanel(workArea, foundProduct);
+                
+                // Add the panel to the work area and switch to it
+                workArea.add("ViewProductDetailJPanel", panel);
+                CardLayout layout = (CardLayout) workArea.getLayout();
+                layout.next(workArea);  // Navigate to the detail view
+                
+            } else {
+                // If the product is not found, show a warning message
+                JOptionPane.showMessageDialog(null, "Product not found. Please check the Product ID and try again.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (NumberFormatException e) {
+            // Show an error message if the input is not a valid integer
+            JOptionPane.showMessageDialog(null, "Please enter a valid numeric Product ID.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    } else {
+        // Show a warning message if the input field is blank
+        JOptionPane.showMessageDialog(null, "Please enter a Product ID to search.", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+   
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -103,6 +154,10 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout)workArea.getLayout();
         layout.previous(workArea);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

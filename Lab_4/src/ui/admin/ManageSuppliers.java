@@ -58,6 +58,8 @@ public class ManageSuppliers extends javax.swing.JPanel {
         tblSuppliers = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(241, 250, 253));
+
         btnView.setText("View Supplier");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +74,7 @@ public class ManageSuppliers extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Manage Suppliers");
 
         tblSuppliers.setModel(new javax.swing.table.DefaultTableModel(
@@ -113,10 +116,10 @@ public class ManageSuppliers extends javax.swing.JPanel {
                         .addComponent(btnAdd)
                         .addGap(31, 31, 31)
                         .addComponent(btnView)
-                        .addGap(34, 34, 34)
+                        .addGap(47, 47, 47)
                         .addComponent(btnRemove))
-                    .addComponent(jLabel1)
-                    .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,10 +131,10 @@ public class ManageSuppliers extends javax.swing.JPanel {
                 .addComponent(scrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnRemove)
-                    .addComponent(btnView))
-                .addContainerGap(267, Short.MAX_VALUE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
