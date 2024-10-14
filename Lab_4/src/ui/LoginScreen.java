@@ -134,7 +134,7 @@ public class LoginScreen extends javax.swing.JPanel {
             return; // Stop the process if no supplier is selected
         } else {
             // If a supplier is selected, create a new SupplierWorkAreaJPanel with it
-            selectedPanel = new SupplierWorkAreaJPanel(mainWorkArea, selectedSupplier);
+            selectedPanel = new SupplierWorkAreaJPanel(mainWorkArea, selectedSupplier, supplierDirectory);
         }
     }
 
@@ -172,7 +172,7 @@ private void populateRoleCombo() {
 
     // Create the admin panel and supplier panel
     AdminWorkAreaJPanel adminPanel = new AdminWorkAreaJPanel(mainWorkArea, supplierDirectory);
-    SupplierWorkAreaJPanel supplierPanel = new SupplierWorkAreaJPanel(mainWorkArea, selectedSupplier);
+ SupplierWorkAreaJPanel supplierPanel = new SupplierWorkAreaJPanel(mainWorkArea, selectedSupplier, supplierDirectory);
 
     // Add the panels to the combo box
     cmbRoles.addItem(adminPanel); // Adding Admin panel

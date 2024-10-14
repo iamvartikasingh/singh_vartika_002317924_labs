@@ -8,6 +8,7 @@ import model.Supplier;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
+import model.SupplierDirectory;
 import ui.LoginScreen;
 
 /**
@@ -18,22 +19,23 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel mainWorkArea;
     Supplier supplier;
+     SupplierDirectory supplierDirectory;
 //    MasterOrderCatalog masterOrderCatalog;
 
     /**
      * Creates new form ProductManagerWorkAreaJPanel
      */
-    public SupplierWorkAreaJPanel(JPanel mainWorkArea, Supplier supplier) {
+     public SupplierWorkAreaJPanel(JPanel mainWorkArea, Supplier supplier, SupplierDirectory supplierDirectory) {
 
         initComponents();
         this.mainWorkArea = mainWorkArea;
         
         this.supplier = supplier;
+        this.supplierDirectory = supplierDirectory;
         if (supplier != null) lblWelcome.setText("Welcome to Lab 4, "+supplier.getSupplyName());
         
 //      masterOrderCatalog = moc;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,9 +109,9 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(lblWelcome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnManageProductCatalog)
-                .addGap(49, 49, 49)
+                .addGap(36, 36, 36)
                 .addComponent(btnSupplierProfile)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addComponent(btnManageStaff)
                 .addGap(48, 48, 48)
                 .addComponent(Performance)
@@ -187,7 +189,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSupplierProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierProfileActionPerformed
         // TODO add your handling code here:
-        UpdateProfile updateProfile = new UpdateProfile(workArea, supplier, supplierDirectory);
+        UpdateSupplierProfile updateProfile = new UpdateSupplierProfile(workArea, supplier, supplierDirectory);
         workArea.add(updateProfile);
 
         CardLayout cardLayout = (CardLayout) workArea.getLayout();
