@@ -8,13 +8,16 @@ package ui.CustomerRole;
 import model.Product;
 import model.Supplier;
 import model.SupplierDirectory;
-import ui.SupplierRole.ViewProductDetailJPanel;
+import ui.CustomerRole.ViewProductDetailJPanel;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import model.MasterOrderList;
+import model.Order;
+import model.OrderItem;
+import ui.SupplierRole.SupplierWorkAreaJPanel;
 
 
 /**
@@ -22,47 +25,24 @@ import model.MasterOrderList;
  * @author Rushabh
  */
 public class BrowseProductsJPanel extends javax.swing.JPanel {
-  
-    
-    JPanel userProcessContainer;
-    SupplierDirectory supplierDirectory;
-    MasterOrderList masterOrderList;
-
-
+JPanel userProcessContainer;
+SupplierDirectory supplierDirectory;
+MasterOrderList masterOrderList;
+Order currentOrder;
     /** Creates new form BrowseProducts */
-   public BrowseProductsJPanel(JPanel userProcessContainer, SupplierDirectory supplierDirectory, MasterOrderList masterOrderList) {
+    public BrowseProductsJPanel(JPanel userProcessContainer,SupplierDirectory supplierDirectory,MasterOrderList masterOrderList) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.supplierDirectory = supplierDirectory;
-        this.masterOrderList = masterOrderList;
-        populateCombo();
-       
+         this.userProcessContainer=userProcessContainer;
+         this. supplierDirectory=supplierDirectory;
+         this.masterOrderList=masterOrderList;
+         this.currentOrder=new Order();
+      
+         populateCombo();
+         populateProductTable();
+         populateCartTable();
     }
 
-private void populateCombo() {
-    cmbSupplier.removeAllItems();
-
-    for (Supplier s : supplierDirectory.getSupplierlist()) {
-        cmbSupplier.addItem(s);
-    }
-}
-    private void populateProductTable(String keyword) {
-    DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
-    model.setRowCount(0);
-
-    for (Supplier s : supplierDirectory.getSupplierlist()) {
-        for (Product p : s.getProductCatalog().getProductcatalog()) {
-            if (p.getProdName().equalsIgnoreCase(keyword)) {
-                Object row[] = new Object[4];
-                row[0] = p;
-                row[1] = p.getModelNumber();
-                row[2] = p.getPrice();
-                row[3] = p.getAvail();
-                model.addRow(row);
-            }
-        }
-    }
-}
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -162,6 +142,11 @@ private void populateCombo() {
         spnQuantity.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
         btnAddToCart.setText("Add to Cart");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddToCartActionPerformed(evt);
+            }
+        });
 
         btnProductDetails.setText("View Product Details");
         btnProductDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -229,7 +214,6 @@ private void populateCombo() {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lblProductCatalogue)
                         .addGroup(layout.createSequentialGroup()
@@ -263,11 +247,12 @@ private void populateCombo() {
                             .addComponent(btnViewOrderItem)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnRemoveOrderItem)))
+                    .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(lblTitle)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {spnQuantity, txtSalesPrice});
@@ -275,7 +260,7 @@ private void populateCombo() {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitle)
                     .addComponent(btnBack))
@@ -307,9 +292,9 @@ private void populateCombo() {
                     .addComponent(btnRemoveOrderItem)
                     .addComponent(btnModifyQuantity)
                     .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane2});
@@ -317,14 +302,13 @@ private void populateCombo() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSupplierActionPerformed
-       
         // TODO add your handling code here:
-       
+        populateProductTable();
     }//GEN-LAST:event_cmbSupplierActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-          userProcessContainer.remove(this);
+        userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
         
@@ -332,41 +316,168 @@ private void populateCombo() {
 
     private void btnProductDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductDetailsActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = tblProductCatalog.getSelectedRow();
-if (selectedRowIndex < 0) {
-    JOptionPane.showMessageDialog(this, "Please select the product first.");
-    return;
-}
-
-Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
-ViewProductDetailJPanel vpdp = new ViewProductDetailJPanel(userProcessContainer, product);
-userProcessContainer.add("SupplierWorkAreaJPanel", vpdp);
-CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-layout.next(userProcessContainer);
+        int selectedRowIndex=tblProductCatalog.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select the product first.");
+            return;
+        }
+        
+        Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
+        ViewProductDetailJPanel vpdp = new ViewProductDetailJPanel(userProcessContainer, product);
+        userProcessContainer.add("SupplierWorkAreaJPanel", vpdp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
     }//GEN-LAST:event_btnProductDetailsActionPerformed
 
     private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
         // TODO add your handling code here:
+        masterOrderList.addNewOrder(currentOrder);
+        currentOrder=new Order();
+        
+        populateCombo();
+         populateProductTable();
+         populateCartTable();
+         
+         txtNewQuantity.setText("");
+         txtSalesPrice.setText("");
+         txtSearch.setText("");
+         
+         spnQuantity.setValue(0);
+         
+        JOptionPane.showMessageDialog(this, "Thank you for your purchase! Looking forward to see you again.");
+
+         
        
     }//GEN-LAST:event_btnCheckOutActionPerformed
 
     private void btnModifyQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyQuantityActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndex=tblCart.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select the order item first.");
+            return;
+        }
         
+        OrderItem item = (OrderItem) tblCart.getValueAt(selectedRowIndex, 0);
+        int quant=0;
+        
+        try{
+        
+            quant=Integer.parseInt(txtNewQuantity.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please check the modified quantity field.");
+            return;
+        }
+        int oldQuant=item.getQuantity();
+            if(item.getProduct().getAvail()+oldQuant<quant){
+                JOptionPane.showMessageDialog(this, "Please check product availability");
+                return;  
+            }
+            item.getProduct().setAvail(item.getProduct().getAvail()+oldQuant-quant);
+            item.setQuantity(quant);
+            
+            populateCartTable();
+            populateProductTable();
     }//GEN-LAST:event_btnModifyQuantityActionPerformed
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
-String productName = txtSearch.getText();
-populateProductTable(productName);        
+        
+        String productName=txtSearch.getText();
+        
+        if (productName.isEmpty()) {
+        populateProductTable();
+    } else {
+        // Otherwise, filter the products based on the keyword
+        populateProductTable(productName);
+    }
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
     private void btnRemoveOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveOrderItemActionPerformed
-       
+       int selectedRowIndex=tblCart.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select the order item first.");
+            return;
+        }
+        
+        OrderItem item = (OrderItem) tblCart.getValueAt(selectedRowIndex, 0);
+        int quant=0;
+      
+            item.getProduct().setAvail(item.getProduct().getAvail()+item.getQuantity());
+            currentOrder.deleteItem(item);
+            
+            populateCartTable();
+            populateProductTable();
     }//GEN-LAST:event_btnRemoveOrderItemActionPerformed
 
     private void btnViewOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderItemActionPerformed
+        int selectedRowIndex=tblCart.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select the item first.");
+            return;
+        }
         
+        OrderItem item = (OrderItem) tblCart.getValueAt(selectedRowIndex, 0);
+        ViewOrderItemDetailJPanel voidj = new ViewOrderItemDetailJPanel(userProcessContainer, item);
+        userProcessContainer.add("ViewOrderItemDetailJPanel", voidj);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewOrderItemActionPerformed
+
+    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
+        // TODO add your handling code here:
+        
+          int selectedRowIndex=tblProductCatalog.getSelectedRow();
+        if(selectedRowIndex<0){
+            JOptionPane.showMessageDialog(this, "Please select the product first.");
+            return;
+        }
+        
+        Product product = (Product) tblProductCatalog.getValueAt(selectedRowIndex, 0);
+        double salesPrice=0;
+        int quant=0;
+        
+        try{
+        
+            salesPrice=Double.parseDouble(txtSalesPrice.getText());
+            quant=(Integer)spnQuantity.getValue();
+            
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please check the price and the quantity fields.");
+            return;
+        }
+        
+        if(salesPrice<product.getPrice()){
+            JOptionPane.showMessageDialog(this, "Price should be more than it is set in price.");
+            return;
+        }
+        
+        OrderItem item=currentOrder.findProduct(product);
+        if(item==null){
+            if(product.getAvail()>=quant){
+                currentOrder.addNewOrderItem(product,salesPrice,quant);
+                product.setAvail(product.getAvail()-quant);
+            }
+            else{
+            JOptionPane.showMessageDialog(this, "Please check product availability");
+            return;  
+            }
+        }
+        else{
+            int oldQuant=item.getQuantity();
+            if(item.getProduct().getAvail()+oldQuant<quant){
+                JOptionPane.showMessageDialog(this, "Please check product availability");
+                return;  
+            }
+            item.getProduct().setAvail(item.getProduct().getAvail()+oldQuant-quant);
+            item.setQuantity(quant);
+            
+        }   
+        populateProductTable();
+        populateCartTable();
+        
+    }//GEN-LAST:event_btnAddToCartActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -394,4 +505,71 @@ populateProductTable(productName);
     private javax.swing.JTextField txtSalesPrice;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void populateCombo() {
+        cmbSupplier.removeAllItems();
+        for(Supplier s:supplierDirectory.getSupplierlist()){
+            cmbSupplier.addItem(s);
+        }
+        
+    }
+
+    
+    private void populateProductTable() {
+        
+        Supplier selectedSupplier=(Supplier)cmbSupplier.getSelectedItem();
+        if(selectedSupplier==null){
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+        
+         for (Product p : selectedSupplier.getProductCatalog().getProductcatalog()){
+            Object row[] = new Object[4];
+            row[0] = p;
+            row[1] = p.getModelNumber();
+            row[2] = p.getPrice();
+            row[3]=p.getAvail();
+            model.addRow(row);
+         }
+    }
+    private void populateProductTable(String keyword) {
+        
+        Supplier selectedSupplier=(Supplier)cmbSupplier.getSelectedItem();
+        if(selectedSupplier==null){
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblProductCatalog.getModel();
+        model.setRowCount(0);
+        for(Supplier s:supplierDirectory.getSupplierlist()){
+         for (Product p : s.getProductCatalog().getProductcatalog()) {
+             if(p.getProdName().equalsIgnoreCase(keyword)){
+            Object row[] = new Object[4];
+            row[0] = p;
+            row[1] = p.getModelNumber();
+            row[2] = p.getPrice();
+            row[3]=p.getAvail();
+            model.addRow(row);
+                }
+            }
+        }
+    }
+    
+    private void populateCartTable() {
+        
+      
+        DefaultTableModel model = (DefaultTableModel) tblCart.getModel();
+        model.setRowCount(0);
+        
+         for (OrderItem oi : currentOrder.getOrderItemList()){
+            Object row[] = new Object[4];
+            row[0] = oi;
+            row[1] = oi.getSalesPrice();
+            row[2] = oi.getQuantity();
+            row[3]=oi.getQuantity()*oi.getSalesPrice();
+            model.addRow(row);
+         }
+    }
 }

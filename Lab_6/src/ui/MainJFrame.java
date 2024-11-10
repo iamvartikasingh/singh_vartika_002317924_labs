@@ -1,36 +1,39 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package ui;
 
-
 import java.awt.CardLayout;
 import model.Business;
+import model.MasterOrderList;
 import model.SupplierDirectory;
 import ui.AdminRole.AdminWorkAreaJPanel;
-import ui.SupplierRole.LoginSupplierJPanel;
-import model.MasterOrderList;
 import ui.CustomerRole.CustomerWorkAreaJPanel;
+import ui.SupplierRole.LoginSupplierJPanel;
+
 /**
  *
- * @author vartika
+ * @author archil
  */
 public class MainJFrame extends javax.swing.JFrame {
-  SupplierDirectory supplierDirectory;
-    Business business;
-    MasterOrderList masterOrderList;
-    public MainJFrame() {
-        initComponents();
-        business = new Business();
-        supplierDirectory = new SupplierDirectory();
-    setSize(1200, 1200);
-    }
 
     /**
      * Creates new form MainJFrame
      */
-   
+    Business business;
+    SupplierDirectory supplierDirectory;
+    MasterOrderList masterOrderList;
+    
+    public MainJFrame() {
+        initComponents();
+        business=new Business();
+        masterOrderList=business.getMasterOrderList();
+        supplierDirectory =business.getSupplierDirectory();
+        setSize(830,600);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,10 +51,13 @@ public class MainJFrame extends javax.swing.JFrame {
         userProcessContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 1200));
+        setTitle("Lab 5 Skeleton");
+        setBackground(new java.awt.Color(240, 240, 240));
 
-        splitPane.setDividerLocation(200);
-        splitPane.setDividerSize(2);
+        splitPane.setDividerLocation(150);
+        splitPane.setOpaque(false);
+
+        controlPanel.setBackground(new java.awt.Color(240, 240, 240));
 
         btnAdmin.setText("Administrator");
         btnAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -79,27 +85,31 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdmin))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addComponent(btnCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSupplier, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        controlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdmin, btnCustomer, btnSupplier});
+
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(btnSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(971, Short.MAX_VALUE))
+                .addGap(114, 114, 114)
+                .addComponent(btnAdmin)
+                .addGap(18, 18, 18)
+                .addComponent(btnSupplier)
+                .addGap(18, 18, 18)
+                .addComponent(btnCustomer)
+                .addContainerGap(374, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
 
+        userProcessContainer.setBackground(new java.awt.Color(240, 240, 240));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(userProcessContainer);
 
@@ -107,15 +117,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 967, Short.MAX_VALUE))
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(splitPane))
+            .addComponent(splitPane)
         );
 
         pack();
@@ -127,6 +133,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userProcessContainer.add("AdminWorkAreaJPanel",awajp);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
@@ -138,9 +145,9 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-        CustomerWorkAreaJPanel ls = new CustomerWorkAreaJPanel(userProcessContainer, supplierDirectory);
-        userProcessContainer.add("CustomerWorkAreaJPanel", ls);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        CustomerWorkAreaJPanel cwap = new CustomerWorkAreaJPanel(userProcessContainer, supplierDirectory,masterOrderList);
+        userProcessContainer.add("CustomerWorkAreaJPanel", cwap);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCustomerActionPerformed
 

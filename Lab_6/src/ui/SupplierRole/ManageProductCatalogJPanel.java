@@ -37,7 +37,7 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
             row[0] = p;
             row[1] = p.getModelNumber();
             row[2] = p.getPrice();
-            row[3] = p.getAvail();
+            row[3]=p.getAvail();
             model.addRow(row);
         }
     }
