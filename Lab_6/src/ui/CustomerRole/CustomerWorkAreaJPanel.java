@@ -44,7 +44,7 @@ MasterOrderList masterOrderList;
         lblTitle = new javax.swing.JLabel();
         btnBrowseCatalog = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(240, 240, 240));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setBackground(new java.awt.Color(0, 0, 0));
         lblTitle.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
@@ -79,8 +79,8 @@ MasterOrderList masterOrderList;
                 .addGap(19, 19, 19)
                 .addComponent(lblTitle)
                 .addGap(81, 81, 81)
-                .addComponent(btnBrowseCatalog)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addComponent(btnBrowseCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(381, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void btnBrowseCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseCatalogActionPerformed
