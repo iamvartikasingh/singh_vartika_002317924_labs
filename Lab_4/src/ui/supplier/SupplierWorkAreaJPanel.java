@@ -47,6 +47,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
+        workArea = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
         btnManageProductCatalog = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
@@ -54,9 +55,11 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         btnManageStaff = new javax.swing.JButton();
         Performance = new javax.swing.JButton();
         btnSupplierProfile = new javax.swing.JButton();
-        workArea = new javax.swing.JPanel();
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        workArea.setBackground(new java.awt.Color(237, 249, 255));
+        workArea.setLayout(new java.awt.CardLayout());
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -78,7 +81,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         lblWelcome.setText("<Welcome Message>");
 
         btnManageStaff.setText("Manage Staff");
-        btnManageStaff.setEnabled(false);
         btnManageStaff.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageStaffActionPerformed(evt);
@@ -86,7 +88,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         Performance.setText("Performance");
-        Performance.setEnabled(false);
         Performance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PerformanceActionPerformed(evt);
@@ -130,13 +131,11 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(btnManageStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Performance, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSupplierProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(535, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setTopComponent(menuBar);
+        workArea.add(menuBar, "card2");
 
-        workArea.setBackground(new java.awt.Color(237, 249, 255));
-        workArea.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(workArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

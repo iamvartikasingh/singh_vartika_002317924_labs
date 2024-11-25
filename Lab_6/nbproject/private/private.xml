@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Dwaraka%20Deepika%20vadd/INFO5100_LABS/Vaddadi_Dwaraka_002333703_labs/Lab_6_Skeleton/src/ui/CustomerRole/ViewOrderItemDetailJPanel.java</file>
-            <file>file:/C:/Users/Dwaraka%20Deepika%20vadd/INFO5100_LABS/Vaddadi_Dwaraka_002333703_labs/Lab_6_Skeleton/src/model/Order.java</file>
-            <file>file:/C:/Users/Dwaraka%20Deepika%20vadd/INFO5100_LABS/Vaddadi_Dwaraka_002333703_labs/Lab_6_Skeleton/src/ui/MainJFrame.java</file>
-            <file>file:/C:/Users/Dwaraka%20Deepika%20vadd/INFO5100_LABS/Vaddadi_Dwaraka_002333703_labs/Lab_6_Skeleton/src/model/MasterOrderList.java</file>
-            <file>file:/C:/Users/Dwaraka%20Deepika%20vadd/INFO5100_LABS/Vaddadi_Dwaraka_002333703_labs/Lab_6_Skeleton/src/ui/CustomerRole/BrowseProductsJPanel.java</file>
+            <file>file:/Users/vartika/Desktop/singh_vartika_002317924_labs/Lab_6/src/ui/SupplierRole/SupplierWorkAreaJPanel.java</file>
+            <file>file:/Users/vartika/Desktop/singh_vartika_002317924_labs/Lab_6/src/ui/SupplierRole/CreateNewProductJPanel.java</file>
+            <file>file:/Users/vartika/Desktop/singh_vartika_002317924_labs/Lab_6/src/ui/SupplierRole/ViewProductDetailJPanel.java</file>
+            <file>file:/Users/vartika/Desktop/singh_vartika_002317924_labs/Lab_6/src/ui/SupplierRole/ManageProductCatalogJPanel.java</file>
+            <file>file:/Users/vartika/Desktop/singh_vartika_002317924_labs/Lab_6/src/ui/SupplierRole/LoginSupplierJPanel.java</file>
+            <file>file:/Users/vartika/Desktop/singh_vartika_002317924_labs/Lab_6/src/ui/SupplierRole/SearchResultJPanel.java</file>
         </group>
     </open-files>
 </project-private>

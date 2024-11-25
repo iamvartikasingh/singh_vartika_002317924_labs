@@ -95,7 +95,7 @@ public class UpdateSupplierProfile extends javax.swing.JPanel {
             }
         });
 
-        lblTitle.setText("New Supplier Information:");
+        lblTitle.setText("Update Supplier Information:");
 
         btnAddSupplier.setText("Update");
         btnAddSupplier.addActionListener(new java.awt.event.ActionListener() {
@@ -120,11 +120,10 @@ public class UpdateSupplierProfile extends javax.swing.JPanel {
                 .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblDescription)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(lblName))
+                    .addComponent(lblName)
                     .addComponent(lblLogo))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

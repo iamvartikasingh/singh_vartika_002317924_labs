@@ -44,16 +44,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         splitPane = new javax.swing.JSplitPane();
+        workArea = new javax.swing.JPanel();
         menuBar = new javax.swing.JPanel();
         btnManageSuppliers = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         lblWelcome1 = new javax.swing.JLabel();
-        workArea = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
         splitPane.setDividerLocation(93);
         splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        workArea.setBackground(new java.awt.Color(225, 244, 249));
+        workArea.setLayout(new java.awt.CardLayout());
 
         menuBar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -90,7 +93,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         menuBarLayout.setVerticalGroup(
             menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(menuBarLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(603, Short.MAX_VALUE)
                 .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblWelcome1)
                     .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
@@ -98,10 +101,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        splitPane.setTopComponent(menuBar);
+        workArea.add(menuBar, "card2");
 
-        workArea.setBackground(new java.awt.Color(225, 244, 249));
-        workArea.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(workArea);
 
         add(splitPane, java.awt.BorderLayout.CENTER);

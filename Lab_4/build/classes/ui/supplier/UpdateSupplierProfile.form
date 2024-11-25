@@ -27,12 +27,10 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="lblDescription" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
-                      <Component id="lblName" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="lblName" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLogo" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
@@ -158,7 +156,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="New Supplier Information:"/>
+        <Property name="text" type="java.lang.String" value="Update Supplier Information:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnAddSupplier">
