@@ -10,7 +10,7 @@ import model.User;
 
 /**
  *
- * @author radhikajoshi
+ * @author vartikasingh
  */
 public class UserMapComparator implements Comparator <User> {
 
